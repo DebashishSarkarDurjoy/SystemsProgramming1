@@ -15,9 +15,10 @@ typedef struct iorb {
 #include "sortListAlgo.h"
 
 void buildList(IORB **head, int size) {
+  int values[] = {48, 36, 29, 96, 14, 25, 25, 81, 26, 97};
   IORB *firstNode = malloc(sizeof(IORB));
   firstNode->link = NULL;
-  firstNode->base_pri = (rand() % 100) + 1;
+  firstNode->base_pri = values[0];
 
   firstNode->filler[0] = 0 + '0';
 
@@ -26,7 +27,7 @@ void buildList(IORB **head, int size) {
   IORB *current = firstNode;
   for (int i = 1; i < size; i++) {
     IORB *newNode = malloc(sizeof(IORB));
-    newNode->base_pri = (rand() % 100) + 1;
+    newNode->base_pri = values[i];
     newNode->filler[0] = i + '0';
     current->link = newNode;
     current = newNode;
@@ -57,8 +58,7 @@ void displayList(IORB *head) {
   }
 }
 
-int main(void) {
-  srand(21);
+int main(int argc, char* argv[]) {
 
   IORB *head;
   int size = 10;

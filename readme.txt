@@ -22,7 +22,7 @@ buildList(): takes head as argument and builds a list using the following pseudo
              make a loop to make the other nodes:
                 perform the loop using a current node pointer which will point to the current node,
                 make each current node to point to the next new node,
-                make each new node base priority a random value.
+                make each new node base priority from the values array.
              at the end of the loop make the last node to point to NULL.
 
 sortList(): takes the pointer to a header pointer and the pointer to the function priComp(),
@@ -57,7 +57,7 @@ checking if there is any run-time error (by running the main): ./main
       enter 2, sorts the list (no error)
       enter 3, displays the sorted list (no error)
 
-Doing the same thing as above only changing the srand() argument.
+changing the numbers in the value array to check if different priority value causes any error (no error).
 
 
 (e)
