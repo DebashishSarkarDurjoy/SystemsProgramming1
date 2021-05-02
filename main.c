@@ -18,14 +18,19 @@ void buildList(IORB **head, int size) {
   IORB *firstNode = malloc(sizeof(IORB));
   firstNode->link = NULL;
   firstNode->base_pri = (rand() % 100) + 1;
-  *head = firstNode;
-  IORB *current = firstNode;
 
+  firstNode->filler[0] = 0 + '0';
+
+  *head = firstNode;
+
+  IORB *current = firstNode;
   for (int i = 1; i < size; i++) {
     IORB *newNode = malloc(sizeof(IORB));
     newNode->base_pri = (rand() % 100) + 1;
+    newNode->filler[0] = i + '0';
     current->link = newNode;
     current = newNode;
+
   }
   current->link = NULL;
 }
@@ -45,7 +50,9 @@ int displayMenu(void) {
 void displayList(IORB *head) {
   IORB *current = head;
   while (current != NULL) {
-    printf("\nbase_pri: %d   pri: %d", current->base_pri, priComp(current->base_pri));
+    printf("\nBlock description: this is i/o request %c, ", current->filler[0]);
+    printf("Base Priority: %d ", current->base_pri);
+    printf(" Priority: %d\n", priComp(current->base_pri));
     current = current->link;
   }
 }
