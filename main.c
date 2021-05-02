@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 
 
@@ -9,6 +10,15 @@ typedef struct iorb {
   struct iorb *link;
   char filler[100];
 } IORB;
+
+
+int priComp(int num) {
+  int result;
+  result = (num % 10) + (num / 10);
+  return result;
+}
+
+#include "sortListAlgo.h"
 
 void buildList(IORB **head, int size) {
   IORB *firstNode = malloc(sizeof(IORB));
@@ -26,14 +36,6 @@ void buildList(IORB **head, int size) {
   current->link = NULL;
 }
 
-void displayList(IORB *head) {
-  IORB *current = head;
-  while (current != NULL) {
-    printf("%d\n", current->base_pri);
-    current = current->link;
-  }
-}
-
 int displayMenu(void) {
   printf("\n\nSelect an option:\n");
   printf("0. Exit.\n");
@@ -46,10 +48,14 @@ int displayMenu(void) {
   return input;
 }
 
-int priComp(int num) {
-  int result;
-  result = (num % 10) + (num / 10);
-  return result;
+
+
+void displayList(IORB *head) {
+  IORB *current = head;
+  while (current != NULL) {
+    printf("\nbase_pri: %d   pri: %d", current->base_pri, priComp(current->base_pri));
+    current = current->link;
+  }
 }
 
 int main(void) {
@@ -62,7 +68,7 @@ int main(void) {
     switch( displayMenu() ) {
       case 0: printf("Terminating..."); return 0;
       case 1: buildList(&head, size); break;
-      case 2: printf("two chosen"); break;
+      case 2: sortList(&head, priComp); break;
       case 3: displayList(head); break;
     }
   }
