@@ -4,19 +4,13 @@
 #include <stdbool.h>
 
 
+#include "priComp.h"
 
 typedef struct iorb {
   int base_pri;
   struct iorb *link;
   char filler[100];
 } IORB;
-
-
-int priComp(int num) {
-  int result;
-  result = (num % 10) + (num / 10);
-  return result;
-}
 
 #include "sortListAlgo.h"
 
@@ -47,8 +41,6 @@ int displayMenu(void) {
   scanf("%d", &input);
   return input;
 }
-
-
 
 void displayList(IORB *head) {
   IORB *current = head;

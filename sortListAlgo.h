@@ -12,8 +12,6 @@ bool isSorted(IORB* head, int(*prio)(int)) {
 
 void sortList(IORB** head, int(*prio)(int)) {
 
-
-
   while(!isSorted(*head, priComp)) {
     IORB *secondTemp;
     for ( IORB* i = *head; i != NULL; i = i->link ) {
